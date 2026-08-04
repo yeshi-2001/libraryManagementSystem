@@ -1,0 +1,122 @@
+﻿SiteMaster
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="libraryManagementSystem.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">Library Management System</asp:ContentPlaceHolder></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/Contents/css/site.css") %>" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- Hidden fields site.js reads on DOMContentLoaded to auto-show a queued toast -->
+        <asp:HiddenField ID="hfToastMessage" runat="server" ClientIDMode="Static" />
+        <asp:HiddenField ID="hfToastType" runat="server" ClientIDMode="Static" />
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="lms-sidebar" id="sidebar">
+            <div class="p-3 text-white d-flex align-items-center gap-2 border-bottom border-light border-opacity-25">
+                <i class="fa-solid fa-book-bookmark fs-4"></i>
+                <span class="fw-bold fs-5">LibraryMS</span>
+            </div>
+
+            <nav class="nav flex-column py-2">
+                <a runat="server" href="~/Pages/Dashboard.aspx" class="nav-link" id="navDashboard">
+                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                </a>
+
+                <div class="text-white-50 small text-uppercase px-3 pt-3 pb-1" style="letter-spacing:.06em;">Catalog</div>
+                <a runat="server" href="~/Pages/BookList.aspx" class="nav-link" id="navBooks">
+                    <i class="fa-solid fa-book"></i> Books
+                </a>
+                <a runat="server" href="~/Pages/Categories.aspx" class="nav-link" id="navCategories">
+                    <i class="fa-solid fa-tags"></i> Categories
+                </a>
+
+                <div class="text-white-50 small text-uppercase px-3 pt-3 pb-1" style="letter-spacing:.06em;">People</div>
+                <a runat="server" href="~/Pages/MemberList.aspx" class="nav-link" id="navMembers">
+                    <i class="fa-solid fa-users"></i> Members
+                </a>
+
+                <div class="text-white-50 small text-uppercase px-3 pt-3 pb-1" style="letter-spacing:.06em;">Circulation</div>
+                <a runat="server" href="~/Pages/BorrowBook.aspx" class="nav-link" id="navBorrow">
+                    <i class="fa-solid fa-right-from-bracket"></i> Borrow Book
+                </a>
+                <a runat="server" href="~/Pages/ReturnBook.aspx" class="nav-link" id="navReturn">
+                    <i class="fa-solid fa-right-to-bracket"></i> Return Book
+                </a>
+                <a runat="server" href="~/Pages/BorrowHistory.aspx" class="nav-link" id="navBorrowHistory">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Borrow History
+                </a>
+
+                <div class="text-white-50 small text-uppercase px-3 pt-3 pb-1" style="letter-spacing:.06em;">Insights</div>
+                <a runat="server" href="~/Pages/Reports.aspx" class="nav-link" id="navReports">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+
+                <asp:PlaceHolder ID="phAdminNav" runat="server">
+                    <div class="text-white-50 small text-uppercase px-3 pt-3 pb-1" style="letter-spacing:.06em;">Administration</div>
+                    <a runat="server" href="~/Pages/UserList.aspx" class="nav-link" id="navUsers">
+                        <i class="fa-solid fa-user-shield"></i> Users
+                    </a>
+                    <a runat="server" href="~/Pages/LibrarySettings.aspx" class="nav-link" id="navSettings">
+                        <i class="fa-solid fa-gear"></i> Settings
+                    </a>
+                    <a runat="server" href="~/Pages/AuditLog.aspx" class="nav-link" id="navAudit">
+                        <i class="fa-solid fa-clipboard-list"></i> Audit Log
+                    </a>
+                </asp:PlaceHolder>
+            </nav>
+        </aside>
+
+        <!-- ============ TOPBAR ============ -->
+        <header class="lms-topbar">
+            <button type="button" class="btn btn-sm btn-outline-secondary d-lg-none" onclick="toggleSidebar()" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="fw-bold" style="color:var(--lms-primary-dark);">
+                <asp:ContentPlaceHolder ID="PageHeaderContent" runat="server" />
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-light d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white"
+                        style="width:36px;height:36px;background:var(--lms-primary);font-size:.85rem;">
+                        <asp:Literal ID="litUserInitials" runat="server" />
+                    </span>
+                    <span class="d-none d-sm-flex flex-column text-start lh-sm">
+                        <span class="fw-semibold small"><asp:Literal ID="litFullName" runat="server" /></span>
+                        <span class="text-muted" style="font-size:.72rem;"><asp:Literal ID="litRole" runat="server" /></span>
+                    </span>
+                    <i class="fa-solid fa-chevron-down small"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Pages/Profile.aspx") %>"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
+                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Pages/ChangePassword.aspx") %>"><i class="fa-solid fa-key me-2"></i>Change Password</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                        <asp:LinkButton ID="lnkLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="lnkLogout_Click">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                        </asp:LinkButton>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- ============ MAIN CONTENT ============ -->
+        <main class="lms-main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="<%= ResolveUrl("~/Contents/js/site.js") %>"></script>
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+</body>
+</html>
