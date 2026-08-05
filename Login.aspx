@@ -37,6 +37,9 @@
                         ControlToValidate="txtPassword" Display="Dynamic" CssClass="text-danger small"
                         ErrorMessage="Password is required." ValidationGroup="LoginGroup" />
                 </div>
+                <div class="d-flex justify-content-end mb-2">
+                    <a href="Pages/Auth/ForgotPassword.aspx" class="text-muted small">Forgot password?</a>
+                </div>
                 <asp:Button ID="btnLogin" runat="server" Text="Sign In" CssClass="btn btn-primary w-100 py-2"
                     ValidationGroup="LoginGroup" OnClick="btnLogin_Click" />
                 <p class="text-center text-muted small mt-3 mb-0">
