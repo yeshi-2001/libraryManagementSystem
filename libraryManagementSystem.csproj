@@ -105,6 +105,8 @@
     <Content Include="Contents\js\site.js" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="Pages\Auth\ForgotPassword.aspx" />
+    <Content Include="Pages\Auth\ResetPassword.aspx" />
     <Content Include="Pages\BookList.aspx" />
     <Content Include="Pages\MemberList.aspx" />
     <Content Include="Pages\BorrowBook.aspx" />
@@ -132,6 +134,20 @@
     <Compile Include="Models\BorrowRecord.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Pages\Auth\ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Auth\Forgotpassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Auth\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Auth\Resetpassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BookList.aspx.cs">
       <DependentUpon>BookList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,9 +252,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

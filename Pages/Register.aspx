@@ -45,18 +45,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="<%= txtEmail.ClientID %>" class="form-label">Email</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="Enter your email" autocomplete="email" />
-                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server"
-                        ControlToValidate="txtEmail" Display="Dynamic" CssClass="text-danger small"
-                        ErrorMessage="Email is required." ValidationGroup="RegisterGroup" />
-                    <asp:RegularExpressionValidator ID="revEmail" runat="server"
-                        ControlToValidate="txtEmail" Display="Dynamic" CssClass="text-danger small"
-                        ErrorMessage="Enter a valid email address." ValidationGroup="RegisterGroup"
-                        ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
-                </div>
-
-                <div class="mb-3">
                     <label for="<%= txtPassword.ClientID %>" class="form-label">Password</label>
                     <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Create a password" autocomplete="new-password" />
                     <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
