@@ -7,17 +7,7 @@ using System.Data.SqlClient;
 
 namespace libraryManagementSystem.Utils
 {
-    /// <summary>
-    /// Central ADO.NET helper. Every Repository goes through this class to talk to
-    /// SQL Server — this is the ONLY place connection strings and SqlConnection/
-    /// SqlCommand objects are created, which keeps connection handling and
-    /// exception handling consistent everywhere and avoids duplicated ADO.NET
-    /// boilerplate across the 4 repositories.
-    ///
-    /// All methods use parameterized commands (SqlParameter[]) — callers must
-    /// NEVER concatenate user input into SQL text, which is how this class
-    /// prevents SQL injection across the whole app.
-    /// </summary>
+
     public static class Database
     {
         private static readonly string ConnectionString =
@@ -50,18 +40,12 @@ namespace libraryManagementSystem.Utils
                 }
                 catch (SqlException ex)
                 {
-                    // Wrap in a generic exception so callers/UI never need to know
-                    // this layer uses SqlClient specifically — keeps Repository/Service
-                    // layers decoupled from the ADO.NET provider.
+
                     throw new ApplicationException("A database error occurred while executing the query.", ex);
                 }
             }
         }
 
-        /// <summary>
-        /// Executes an INSERT/UPDATE/DELETE (stored procedure or raw query) and
-        /// returns the number of rows affected. Used by Insert()/Update()/Delete().
-        /// </summary>
         public static int ExecuteNonQuery(string commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -85,11 +69,6 @@ namespace libraryManagementSystem.Utils
             }
         }
 
-        /// <summary>
-        /// Executes an INSERT and returns the newly generated identity value
-        /// (e.g. the new BookId). Stored procedures should end with
-        /// "SELECT SCOPE_IDENTITY();" for this to work.
-        /// </summary>
         public static int ExecuteInsertAndGetId(string commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -114,10 +93,6 @@ namespace libraryManagementSystem.Utils
             }
         }
 
-        /// <summary>
-        /// Executes a query that returns a single scalar value (e.g. COUNT(*) for
-        /// Dashboard cards or pagination totals).
-        /// </summary>
         public static object ExecuteScalar(string commandText, CommandType commandType, params SqlParameter[] parameters)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -141,16 +116,7 @@ namespace libraryManagementSystem.Utils
             }
         }
 
-        /// <summary>
-        /// Runs multiple commands inside a single transaction. Used by BorrowService/
-        /// ReturnService, where a borrow/return must update BOTH BorrowRecords AND
-        /// Books.AvailableQuantity atomically — if either fails, both roll back so
-        /// stock counts never drift out of sync with actual transactions.
-        /// </summary>
-        /// <param name="actions">
-        /// A list of actions, each given an open SqlConnection + SqlTransaction to
-        /// execute its command against.
-        /// </param>
+       
         public static void ExecuteTransaction(List<Action<SqlConnection, SqlTransaction>> actions)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
