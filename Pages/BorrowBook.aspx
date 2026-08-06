@@ -1,7 +1,10 @@
 <%@ Page Title="Borrow Book" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BorrowBook.aspx.cs" Inherits="libraryManagementSystem.Pages.BorrowBook" %>
 
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">Borrow Book</asp:Content>
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server"></asp:Content>
+<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="../../Contents/css/site.css" rel="stylesheet" />
+</asp:Content>
 <asp:Content ID="PageHeaderContent" ContentPlaceHolderID="PageHeaderContent" runat="server">
     <i class="fa-solid fa-right-from-bracket me-2"></i>Borrow Book
 </asp:Content>
@@ -21,7 +24,7 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Select Book <span class="text-danger">*</span></label>
-                        <asp:DropDownList ID="ddlBook" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="ddlBook" runat="server" CssClass="form-select searchable-select" AppendDataBoundItems="true">
                             <asp:ListItem Value="">-- Select a Book --</asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlBook" InitialValue=""
@@ -30,7 +33,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Select Member <span class="text-danger">*</span></label>
-                        <asp:DropDownList ID="ddlMember" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="ddlMember" runat="server" CssClass="form-select searchable-select" AppendDataBoundItems="true">
                             <asp:ListItem Value="">-- Select a Member --</asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlMember" InitialValue=""
@@ -72,4 +75,17 @@
             </div>
         </div>
     </div>
+</asp:Content>
+
+<asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+    <script>
+        $(function () {
+            $('.searchable-select').select2({
+                width: '100%',
+                placeholder: 'Search or select...'
+            });
+        });
+    </script>
 </asp:Content>
