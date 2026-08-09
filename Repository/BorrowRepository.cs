@@ -78,6 +78,16 @@ namespace libraryManagementSystem.Repository
         }
 
         /// <summary>Only succeeds for records already in "Returned" status (enforced by the SP).</summary>
+        public int GetActiveBorrowCount(int memberId)
+        {
+            object result = Database.ExecuteScalar(
+                "sp_Borrow_GetActiveBorrowCount",
+                CommandType.StoredProcedure,
+                Database.Param("@MemberId", memberId));
+
+            return result == null || result == DBNull.Value ? 0 : Convert.ToInt32(result);
+        }
+
         public bool Delete(int borrowId)
         {
             object result = Database.ExecuteScalar(

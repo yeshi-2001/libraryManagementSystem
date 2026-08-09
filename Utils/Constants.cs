@@ -54,6 +54,9 @@
 
             /// <summary>Fine charged per day overdue.</summary>
             public const decimal FinePerDay = 10.00m;
+
+            /// <summary>Maximum number of books a member can have borrowed at once.</summary>
+            public const int MaxBorrowLimit = 2;
         }
 
         // ---------------- Pagination ----------------

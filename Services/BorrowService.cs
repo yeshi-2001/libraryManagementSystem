@@ -73,6 +73,15 @@ namespace libraryManagementSystem.Services
                 throw new InvalidOperationException("This member's account is inactive and cannot borrow books.");
             }
 
+            int activeBorrows = _borrowRepository.GetActiveBorrowCount(memberId);
+            if (activeBorrows >= Constants.BorrowRules.MaxBorrowLimit)
+            {
+                throw new InvalidOperationException(
+                    $"This member already has {activeBorrows} book(s) borrowed. " +
+                    $"The maximum limit is {Constants.BorrowRules.MaxBorrowLimit}. " +
+                    "Please return the borrowed book(s) before borrowing again.");
+            }
+
             Book book = _bookRepository.GetById(bookId);
             if (book == null)
             {

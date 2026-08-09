@@ -292,6 +292,12 @@ AS
         SELECT 0;
 GO
 
+CREATE PROCEDURE sp_Borrow_GetActiveBorrowCount @MemberId INT
+AS
+    SELECT COUNT(*) FROM BorrowRecords
+    WHERE MemberId = @MemberId AND Status = 'Borrowed';
+GO
+
 CREATE PROCEDURE sp_Borrow_Search
     @SearchTerm NVARCHAR(100), @Status NVARCHAR(20), @PageNumber INT, @PageSize INT
 AS
