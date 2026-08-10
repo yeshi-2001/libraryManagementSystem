@@ -1,4 +1,3 @@
-﻿SiteMaster
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="libraryManagementSystem.SiteMaster" %>
 <!DOCTYPE html>
 <html lang="en">
