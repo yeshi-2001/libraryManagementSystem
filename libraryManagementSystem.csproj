@@ -110,6 +110,7 @@
     <Content Include="Pages\BookList.aspx" />
     <Content Include="Pages\MemberList.aspx" />
     <Content Include="Pages\BorrowBook.aspx" />
+    <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\ReturnBook.aspx" />
     <Content Include="Pages\BorrowHistory.aspx" />
     <Content Include="Pages\Categories.aspx" />
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="Pages\BorrowBook.aspx.designer.cs">
       <DependentUpon>BorrowBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ReturnBook.aspx.cs">
       <DependentUpon>ReturnBook.aspx</DependentUpon>
