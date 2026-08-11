@@ -1,11 +1,7 @@
-﻿namespace libraryManagementSystem.Utils
+﻿//status
+namespace libraryManagementSystem.Utils
 {
-    /// <summary>
-    /// Centralizes "magic strings" used across the app (roles, statuses, session
-    /// keys, business rule numbers) so they're defined once and referenced
-    /// everywhere else — avoids typos like "Admin" vs "admin" scattered across
-    /// 20 .aspx.cs files.
-    /// </summary>
+
     public static class Constants
     {
         // ---------------- User Roles ----------------
