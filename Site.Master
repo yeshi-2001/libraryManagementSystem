@@ -96,8 +96,7 @@
                     <i class="fa-solid fa-chevron-down small"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Pages/Profile.aspx") %>"><i class="fa-solid fa-user me-2"></i>Profile</a></li>
-                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Pages/ChangePassword.aspx") %>"><i class="fa-solid fa-key me-2"></i>Change Password</a></li>
+                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Pages/Profile.aspx") %>"><i class="fa-solid fa-user me-2"></i>Profile</a></li
                     <li><hr class="dropdown-divider" /></li>
                     <li>
                         <asp:LinkButton ID="lnkLogout" runat="server" CssClass="dropdown-item text-danger" OnClick="lnkLogout_Click">
