@@ -49,11 +49,7 @@
                         <div class="col-sm-8 fw-semibold"><asp:Literal ID="litDetailUserId" runat="server" /></div>
                     </div>
 
-                    <hr class="my-4" />
-
-                    <a href="<%= ResolveUrl("~/Pages/ChangePassword.aspx") %>" class="btn btn-primary">
-                        <i class="fa-solid fa-key me-2"></i>Change Password
-                    </a>
+                  
                 </div>
             </div>
         </div>
